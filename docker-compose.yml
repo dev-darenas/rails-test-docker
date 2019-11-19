@@ -1,0 +1,28 @@
+version: '3'
+services:
+  web:
+    build: .
+    command: >
+      bash -c "rm -f tmp/pids/server.pid &&
+               bundle check || bundle install &&
+               bundle exec rails s -p 3000 -b '0.0.0.0' -e production"
+    environment:
+      SECRET_KEY_BASE: "6dde2c4fa7c34567uf222845f08f97d77129e2debbce418540dd68d1cee45a7f77e1f8c41a2ddj38d7ccjcb222233c514885f8367e2188"
+    volumes:
+      - .:/fiper-api
+    ports:
+      - "3000:3000"
+    links:
+      - db
+      - redis
+    env_file:
+      - ./.env
+  redis:
+    image: 'redis:4.0-alpine'
+    command: redis-server --requirepass fiperRedisPass@2019
+    volumes:
+      - 'redis:/data'
+volumes:
+  gems_volume:
+  mysql_volume:
+  redis:
