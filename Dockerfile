@@ -8,7 +8,7 @@ WORKDIR /application
 # Set Rails environment to production
 ENV RAILS_ENV production
 
-RUN gem install bundler -v 1.17.2
+RUN gem install bundler -v 1.17.3
 
 # Install gems, nodejs and precompile the assets
 RUN bundle install --deployment --without development test \
