@@ -8,6 +8,8 @@ WORKDIR /application
 # Set Rails environment to production
 ENV RAILS_ENV production
 
+RUN gem install bundler
+
 # Install gems, nodejs and precompile the assets
 RUN bundle install --deployment --without development test \
     && curl -sL https://deb.nodesource.com/setup_10.x | bash - \
