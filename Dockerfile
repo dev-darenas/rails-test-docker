@@ -11,7 +11,7 @@ ENV RAILS_ENV production
 RUN gem install bundler -v 1.17.3
 
 # Install gems, nodejs and precompile the assets
-RUN bundle install --deployment --without development test \
+RUN bundle install \
     && curl -sL https://deb.nodesource.com/setup_10.x | bash - \
     && apt install -y nodejs
 
